@@ -1,8 +1,8 @@
 import SearchFrom from "../components/SearchFrom.jsx";
 import NewsCard from "../components/NewsCard.jsx";
 import Preloader from "../components/Preloader.jsx";
-import heroImage from "../assets/search_background_homepage.svg";
-import avatarImage from "../assets/placeholder-image-below.svg";
+import heroImage from "../assets/search_background_homepage.png";
+import avatarImage from "../assets/placeholder-image-below.png";
 import "./Home.css";
 import errorMessage from "../assets/not-found_v1.svg";
 

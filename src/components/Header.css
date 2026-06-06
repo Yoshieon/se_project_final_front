@@ -38,6 +38,49 @@
   gap: 12px;
 }
 
+.mobile-menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 8px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background: white;
+  margin: 4px 0;
+}
+
+.mobile-menu-dropdown {
+  position: absolute;
+  right: 16px;
+  top: 76px;
+  width: calc(100% - 32px);
+  background: rgba(15, 23, 42, 0.95);
+  border-radius: 18px;
+  padding: 18px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 20;
+}
+
+.mobile-menu-dropdown .home-action-button,
+.mobile-menu-dropdown .sign-in-button,
+.mobile-menu-dropdown .saved-action-button {
+  width: 100%;
+  max-width: 100%;
+  justify-content: center;
+}
+
 .home-action-button {
   border: 3px rgba(255, 255, 255, 1);
   border-radius: 999px;
@@ -237,8 +280,45 @@
     justify-content: center;
   }
 
+  .mobile-menu-toggle {
+    display: inline-flex;
+    position: absolute;
+    margin-left: 280px;
+  }
+
+  .header-actions {
+    display: none;
+  }
+
+  .button-secondary,
+  .sign-in-button,
+  .saved-action-button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mobile-menu-dropdown {
+    display: flex;
+    right: 16px;
+    top: 88px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px 16px;
+    background: rgba(26, 27, 34, 1);
+    border-radius: 18px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  }
+
+  .mobile-menu-dropdown .button-secondary,
+  .mobile-menu-dropdown .sign-in-button,
+  .mobile-menu-dropdown .saved-action-button {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .brand-link {
     font-size: 18px;
+    margin-right: 187px;
   }
 
   .header-actions {

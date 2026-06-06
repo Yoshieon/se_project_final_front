@@ -3,17 +3,21 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Header.css";
 import closeButton from "../assets/close-popup.svg";
+import menuwhite from "../assets/menu-mobile-white.svg";
 import signoutIcon from "../assets/sign-out-icon.svg";
 import SavedNewsPage from "../pages/SavedNews";
 
 export default function Header({ onAuthChange, isLoggedIn }) {
   const [modalMode, setModalMode] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [userName, setUserName] = useState("");
 
   const closeModal = () => setModalMode("");
+  const toggleMobileMenu = () => setIsMobileMenuOpen((open) => !open);
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -112,6 +116,14 @@ export default function Header({ onAuthChange, isLoggedIn }) {
           NewsExplorer
         </Link>
       </div>
+      <button
+        type="button"
+        className="mobile-menu-toggle"
+        aria-expanded={isMobileMenuOpen}
+        aria-label="Toggle navigation menu"
+        onClick={toggleMobileMenu}>
+        <img src={menuwhite} alt="menu" />
+      </button>
       <div className="header-actions">
         <Link to="/" className="button-secondary home-action-button">
           Home
@@ -145,6 +157,35 @@ export default function Header({ onAuthChange, isLoggedIn }) {
           </button>
         )}
       </div>
+
+      {isMobileMenuOpen && (
+        <div className="mobile-menu-dropdown">
+          <Link
+            to="/"
+            className="button-secondary home-action-button"
+            onClick={closeMobileMenu}>
+            Home
+          </Link>
+          {!isLoggedIn ? (
+            <button
+              type="button"
+              className="sign-in-button"
+              onClick={() => {
+                openSignIn();
+                closeMobileMenu();
+              }}>
+              Sign in
+            </button>
+          ) : (
+            <Link
+              to="/saved-news"
+              className="button-secondary saved-action-button"
+              onClick={closeMobileMenu}>
+              Saved Articles
+            </Link>
+          )}
+        </div>
+      )}
 
       {isModalOpen && (
         <div
