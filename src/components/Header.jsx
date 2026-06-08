@@ -5,7 +5,6 @@ import "./Header.css";
 import closeButton from "../assets/close-popup.svg";
 import menuwhite from "../assets/menu-mobile-white.svg";
 import signoutIcon from "../assets/sign-out-icon.svg";
-import SavedNewsPage from "../pages/SavedNews";
 
 export default function Header({ onAuthChange, isLoggedIn }) {
   const [modalMode, setModalMode] = useState("");
@@ -13,7 +12,6 @@ export default function Header({ onAuthChange, isLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [userName, setUserName] = useState("");
 
   const closeModal = () => setModalMode("");
   const toggleMobileMenu = () => setIsMobileMenuOpen((open) => !open);
@@ -22,7 +20,6 @@ export default function Header({ onAuthChange, isLoggedIn }) {
   const handleSignIn = (event) => {
     event.preventDefault();
     const name = email.split("@")[0] || "User";
-    setUserName(name);
     localStorage.setItem("userName", name);
 
     const token =
@@ -41,7 +38,6 @@ export default function Header({ onAuthChange, isLoggedIn }) {
   const handleSignUpSubmit = (event) => {
     event.preventDefault();
     const name = username.trim() || email.split("@")[0] || "User";
-    setUserName(name);
     localStorage.setItem("userName", name);
 
     const token =
@@ -61,7 +57,6 @@ export default function Header({ onAuthChange, isLoggedIn }) {
   const handleSignOut = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("userName");
-    setUserName("");
     if (typeof onAuthChange === "function") {
       onAuthChange(false);
     }
@@ -84,6 +79,10 @@ export default function Header({ onAuthChange, isLoggedIn }) {
   const isSignUpValid =
     email.trim() !== "" && password.trim() !== "" && username.trim() !== "";
 
+  const userName = isLoggedIn
+    ? localStorage.getItem("userName") || "User"
+    : "";
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -99,15 +98,6 @@ export default function Header({ onAuthChange, isLoggedIn }) {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isModalOpen]);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      const storedName = localStorage.getItem("userName");
-      setUserName(storedName || "User");
-    } else {
-      setUserName("");
-    }
-  }, [isLoggedIn]);
 
   return (
     <header className="site-header">

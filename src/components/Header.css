@@ -192,7 +192,7 @@
 }
 
 .modal-label {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--sans);
   font-weight: 400;
   padding: 66px, 14px;
   font-size: 12px;
@@ -219,11 +219,15 @@
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0;
-  outline: none;
 }
 
 .modal-label input:focus {
   border-bottom-color: rgba(37, 99, 235, 1);
+}
+
+.modal-label input:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  outline-offset: 4px;
 }
 
 .modal-actions {

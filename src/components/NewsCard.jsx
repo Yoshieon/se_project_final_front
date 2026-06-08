@@ -2,7 +2,6 @@ import SavedNewsPage from "../pages/SavedNews";
 
 export default function NewsCard({
   article,
-  id,
   keywords = [],
   isSaved,
   isSavedPage = false,

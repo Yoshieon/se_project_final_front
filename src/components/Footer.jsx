@@ -16,18 +16,28 @@ export default function Footer() {
           <a href="/">TripleTen</a>
         </nav>
         <div className="footer-icons">
-          <a href="#" aria-label="Icon 1" className="icon-link">
+          <a
+            href="https://github.com/yoshieon"
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="GitHub profile"
+            className="icon-link">
             <img
               className="github-Icon"
               src={githubIcon}
-              alt="Reference app A"
+              alt="GitHub profile"
             />
           </a>
-          <a href="#" aria-label="Icon 2" className="icon-link">
+          <a
+            href="https://www.linkedin.com/in/joe-roodvoets-1b0838396/"
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="LinkedIn profile"
+            className="icon-link">
             <img
               className="linkedin-Icon"
               src={linkedinIcon}
-              alt="Reference app B"
+              alt="LinkedIn profile"
             />
           </a>
         </div>

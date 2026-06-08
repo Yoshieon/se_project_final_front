@@ -1,5 +1,5 @@
 import { HashRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import HomePage from "./pages/Home.jsx";
@@ -17,23 +17,23 @@ function App() {
   const [searchError, setSearchError] = useState("");
   const [searchExecuted, setSearchExecuted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [savedArticles, setSavedArticles] = useState([]);
-
-  useEffect(() => {
-    setIsLoggedIn(Boolean(localStorage.getItem("authToken")));
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    () => Boolean(localStorage.getItem("authToken")),
+  );
+  const [savedArticles, setSavedArticles] = useState(() => {
     const saved = window.localStorage.getItem("savedArticles");
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed)) {
-          setSavedArticles(parsed);
+          return parsed;
         }
       } catch (error) {
         console.error("Failed to parse saved articles", error);
       }
     }
-  }, []);
+    return [];
+  });
 
   const handleAuthChange = (loggedIn) => {
     setIsLoggedIn(loggedIn);

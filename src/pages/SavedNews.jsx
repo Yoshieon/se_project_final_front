@@ -12,18 +12,37 @@ const TOPIC_RULES = [
   },
   {
     label: "Politics",
-    terms: ["politics", "government", "election", "policy", "senate", "congress", "president", "diplomacy"],
+    terms: [
+      "politics",
+      "government",
+      "election",
+      "policy",
+      "senate",
+      "congress",
+      "president",
+      "diplomacy",
+    ],
   },
   {
     label: "Entertainment",
-    terms: ["entertainment", "movie", "music", "tv", "celebrity", "show", "concert", "festival"],
+    terms: [
+      "entertainment",
+      "movie",
+      "music",
+      "tv",
+      "celebrity",
+      "show",
+      "concert",
+      "festival",
+    ],
   },
 ];
 
 function getArticleTopics(article) {
-  const text = `${article.title || ""} ${article.description || ""} ${article.content || ""}`.toLowerCase();
+  const text =
+    `${article.title || ""} ${article.description || ""} ${article.content || ""}`.toLowerCase();
   return TOPIC_RULES.filter(({ terms }) =>
-    terms.some((term) => text.includes(term))
+    terms.some((term) => text.includes(term)),
   ).map((topic) => topic.label);
 }
 
@@ -62,7 +81,7 @@ export default function SavedNewsPage({
     : "Guest";
   const savedCount = savedArticles.length;
   const savedKeywords = uniq(
-    savedArticles.flatMap((article) => getArticleTopics(article))
+    savedArticles.flatMap((article) => getArticleTopics(article)),
   );
 
   return (
@@ -72,9 +91,7 @@ export default function SavedNewsPage({
         <div className="saved-news-actions">By Keywords:</div>
         <div className="saved-news-keywords">
           {savedKeywords.length > 0 ? (
-            savedKeywords.map((keyword) => (
-              <span key={keyword}>{keyword}</span>
-            ))
+            savedKeywords.map((keyword) => <span key={keyword}>{keyword}</span>)
           ) : (
             <span>No keyword tags available for saved articles.</span>
           )}

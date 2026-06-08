@@ -18,10 +18,15 @@
   padding: 0 32px 0 18px;
   border: 1px solid rgba(209, 210, 214, 1);
   border-radius: 100px;
-  outline: none;
   background: white;
   color: rgba(26, 27, 34, 1);
   box-sizing: border-box;
+}
+
+.search-input:focus-visible {
+  outline: 3px solid rgba(47, 113, 229, 0.35);
+  outline-offset: 4px;
+  border-color: rgba(47, 113, 229, 1);
 }
 
 .search-input::placeholder {
@@ -45,6 +50,11 @@
   cursor: pointer;
   position: fixed;
   margin-left: 440px;
+}
+
+.search-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.45);
+  outline-offset: 4px;
 }
 
 .search-error {

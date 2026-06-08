@@ -1,3 +1,5 @@
+@import "./vendor/fonts.css";
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -11,8 +13,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
-  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
+  --sans: "Roboto", Segoe UI, sans-serif;
+  --heading: "Roboto", Segoe UI, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -25,7 +27,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     font-size: 16px;
   }
 }
@@ -77,7 +79,7 @@ h1 {
   font-size: 56px;
   letter-spacing: -1.68px;
   margin: 32px 0;
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     font-size: 36px;
     margin: 20px 0;
   }
@@ -87,7 +89,7 @@ h2 {
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     font-size: 20px;
   }
 }
@@ -129,6 +131,14 @@ a {
 button,
 input {
   font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(47, 113, 229, 0.35);
+  outline-offset: 4px;
 }
 
 .app-shell {

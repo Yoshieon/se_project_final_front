@@ -18,7 +18,6 @@ export default function HomePage({
   isLoading,
   searchExecuted,
   searchError,
-  searchTerm,
   onToggleSave,
   savedArticleUrls,
   isLoggedIn,
