@@ -37,6 +37,7 @@
   .author-card {
     flex-direction: column;
     text-align: center;
+    max-width: 1023px;
   }
 
   .author-copy {

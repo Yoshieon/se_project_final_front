@@ -8,7 +8,28 @@ const TOPIC_RULES = [
   },
   {
     label: "Nature",
-    terms: ["nature", "environment", "wildlife", "forest", "earth", "green"],
+    terms: [
+      "nature",
+      "environment",
+      "wildlife",
+      "forest",
+      "earth",
+      "green",
+      "animals",
+    ],
+  },
+  {
+    label: "Health",
+    terms: [
+      "pharmacy",
+      "vitamin",
+      "workout",
+      "fitness",
+      "science",
+      "protein",
+      "healthy",
+      "clean",
+    ],
   },
   {
     label: "Politics",
@@ -34,6 +55,9 @@ const TOPIC_RULES = [
       "show",
       "concert",
       "festival",
+      "gaming",
+      "game",
+      "console",
     ],
   },
 ];
@@ -73,6 +97,7 @@ function SavedNewsHeader({ userName, savedCount }) {
 
 export default function SavedNewsPage({
   savedArticles,
+  searchTerm,
   isLoggedIn,
   onToggleSave,
 }) {
@@ -80,21 +105,38 @@ export default function SavedNewsPage({
     ? localStorage.getItem("userName") || "User"
     : "Guest";
   const savedCount = savedArticles.length;
-  const savedKeywords = uniq(
-    savedArticles.flatMap((article) => getArticleTopics(article)),
-  );
+  const searchKeywords = searchTerm
+    ? searchTerm.split(/\s+/).filter(Boolean)
+    : [];
+  const savedKeywords = searchKeywords.length
+    ? uniq(searchKeywords)
+    : uniq(savedArticles.flatMap((article) => getArticleTopics(article)));
+  const visibleKeywords = savedKeywords.slice(0, 2);
+  const remainingKeywordCount = Math.max(savedKeywords.length - 2, 0);
 
   return (
     <SavedNews>
       <section className="saved-news-page">
         <SavedNewsHeader userName={userName} savedCount={savedCount} />
-        <div className="saved-news-actions">By Keywords:</div>
-        <div className="saved-news-keywords">
-          {savedKeywords.length > 0 ? (
-            savedKeywords.map((keyword) => <span key={keyword}>{keyword}</span>)
-          ) : (
-            <span>No keyword tags available for saved articles.</span>
-          )}
+        <div className="saved-news-actions">
+          <span>By Keywords:</span>
+          <div className="saved-news-keywords">
+            {savedKeywords.length > 0 ? (
+              <>
+                {visibleKeywords.map((keyword, index) => (
+                  <span key={keyword}>
+                    {keyword}
+                    {index < visibleKeywords.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+                {remainingKeywordCount > 0 && (
+                  <span>and {remainingKeywordCount} other</span>
+                )}
+              </>
+            ) : (
+              <span>No keyword tags available for saved articles.</span>
+            )}
+          </div>
         </div>
 
         {!isLoggedIn ? (
@@ -118,7 +160,11 @@ export default function SavedNewsPage({
                 key={article.url}
                 id={article.url}
                 article={article}
-                keywords={getArticleTopics(article)}
+                keywords={
+                  searchKeywords.length > 0
+                    ? searchKeywords
+                    : getArticleTopics(article)
+                }
                 isSaved={true}
                 isSavedPage={true}
                 isLoggedIn={isLoggedIn}

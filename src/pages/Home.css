@@ -66,6 +66,13 @@
   justify-content: center;
 }
 
+.search-results-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0 16px;
+}
+
 .below-content {
   font-family: Roboto;
   font-weight: 400;

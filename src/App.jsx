@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
@@ -17,8 +17,8 @@ function App() {
   const [searchError, setSearchError] = useState("");
   const [searchExecuted, setSearchExecuted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    () => Boolean(localStorage.getItem("authToken")),
+  const [isLoggedIn, setIsLoggedIn] = useState(() =>
+    Boolean(localStorage.getItem("authToken")),
   );
   const [savedArticles, setSavedArticles] = useState(() => {
     const saved = window.localStorage.getItem("savedArticles");
@@ -134,6 +134,7 @@ function App() {
               element={
                 <SavedNewsPage
                   savedArticles={savedArticles}
+                  searchTerm={searchTerm}
                   isLoggedIn={isLoggedIn}
                   onToggleSave={handleToggleSave}
                 />

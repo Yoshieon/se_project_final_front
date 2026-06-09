@@ -2,7 +2,7 @@ import SearchFrom from "../components/SearchFrom.jsx";
 import NewsCard from "../components/NewsCard.jsx";
 import Preloader from "../components/Preloader.jsx";
 import heroImage from "../assets/search_background_homepage.png";
-import avatarImage from "../assets/placeholder-image-below.png";
+import avatarImage from "../assets/self-potrait-photo.png";
 import "./Home.css";
 import errorMessage from "../assets/not-found_v1.svg";
 
@@ -47,7 +47,9 @@ export default function HomePage({
         {searchExecuted && (
           <section className="search-results-block">
             {isLoading ? (
-              <Preloader />
+              <div className="search-results-loading">
+                <Preloader />
+              </div>
             ) : searchError ? (
               <p className="results-message">{searchError}</p>
             ) : articles.length === 0 ? (

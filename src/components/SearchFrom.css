@@ -430,6 +430,16 @@
   text-decoration: underline;
 }
 
+@media (max-width: 1023px) {
+  .search-input {
+    margin-top: 48px;
+  }
+
+  .search-button {
+    margin-top: 48px;
+  }
+}
+
 @media (max-width: 375px) {
   .search-form {
     flex-direction: column;
@@ -493,6 +503,10 @@
   .news-card-save {
     top: 16px;
     right: 12px;
+  }
+
+  .news-card-image {
+    max-width: 100%;
   }
 
   .news-card-save-tooltip {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./Header.css";
 import closeButton from "../assets/close-popup.svg";
@@ -7,6 +7,7 @@ import menuwhite from "../assets/menu-mobile-white.svg";
 import signoutIcon from "../assets/sign-out-icon.svg";
 
 export default function Header({ onAuthChange, isLoggedIn }) {
+  const location = useLocation();
   const [modalMode, setModalMode] = useState("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [email, setEmail] = useState("");
@@ -82,6 +83,8 @@ export default function Header({ onAuthChange, isLoggedIn }) {
   const userName = isLoggedIn
     ? localStorage.getItem("userName") || "User"
     : "";
+  const isSavedNewsPage = location.pathname === "/saved-news";
+  const headerThemeClass = isSavedNewsPage ? "site-header--saved" : "site-header--home";
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -100,9 +103,9 @@ export default function Header({ onAuthChange, isLoggedIn }) {
   }, [isModalOpen]);
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${headerThemeClass}`}>
       <div className="header-brand">
-        <Link to="/" className="brand-link">
+        <Link to="/" className={`brand-link ${isSavedNewsPage ? "brand-link--saved" : "brand-link--home"}`}>
           NewsExplorer
         </Link>
       </div>
@@ -115,16 +118,16 @@ export default function Header({ onAuthChange, isLoggedIn }) {
         <img src={menuwhite} alt="menu" />
       </button>
       <div className="header-actions">
-        <Link to="/" className="button-secondary home-action-button">
+        <Link to="/" className={`button-secondary home-action-button ${isSavedNewsPage ? "home-action-button--saved" : "home-action-button--home"}`}>
           Home
         </Link>
         {isLoggedIn ? (
           <>
-            <Link to="/saved-news" className="saved-action-button">
+            <Link to="/saved-news" className={`saved-action-button ${isSavedNewsPage ? "saved-action-button--saved" : "saved-action-button--home"}`}>
               Saved Articles
             </Link>
             <div className="header-user-block">
-              <span className="signed-in-name" onClick={handleSignOut}>
+              <span className={`signed-in-name ${isSavedNewsPage ? "signed-in-name--saved" : "signed-in-name--home"}`} onClick={handleSignOut}>
                 {userName ? ` ${userName}` : "Signed in"}
                 {typeof signoutIcon === "function" ? (
                   React.createElement(signoutIcon, {
@@ -142,7 +145,7 @@ export default function Header({ onAuthChange, isLoggedIn }) {
             </div>
           </>
         ) : (
-          <button type="button" className="sign-in-button" onClick={openSignIn}>
+          <button type="button" className={`sign-in-button ${isSavedNewsPage ? "sign-in-button--saved" : "sign-in-button--home"}`} onClick={openSignIn}>
             Sign in
           </button>
         )}
@@ -152,14 +155,14 @@ export default function Header({ onAuthChange, isLoggedIn }) {
         <div className="mobile-menu-dropdown">
           <Link
             to="/"
-            className="button-secondary home-action-button"
+            className={`button-secondary home-action-button ${isSavedNewsPage ? "home-action-button--saved" : "home-action-button--home"}`}
             onClick={closeMobileMenu}>
             Home
           </Link>
           {!isLoggedIn ? (
             <button
               type="button"
-              className="sign-in-button"
+              className={`sign-in-button ${isSavedNewsPage ? "sign-in-button--saved" : "sign-in-button--home"}`}
               onClick={() => {
                 openSignIn();
                 closeMobileMenu();
@@ -169,7 +172,7 @@ export default function Header({ onAuthChange, isLoggedIn }) {
           ) : (
             <Link
               to="/saved-news"
-              className="button-secondary saved-action-button"
+              className={`button-secondary saved-action-button ${isSavedNewsPage ? "saved-action-button--saved" : "saved-action-button--home"}`}
               onClick={closeMobileMenu}>
               Saved Articles
             </Link>
