@@ -1,0 +1,46 @@
+.author-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 900px;
+  margin: 36px auto 0;
+  padding: 24px;
+  background: white;
+}
+
+.author-copy {
+  text-align: left;
+}
+
+.author-title {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111827;
+  font-family: Roboto;
+}
+
+.author-role {
+  margin: 8px 0 0;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.author-description {
+  margin: 16px 0 0;
+  line-height: 1.8;
+  color: #334155;
+}
+
+@media (max-width: 1023px) {
+  .author-card {
+    flex-direction: column;
+    text-align: center;
+    max-width: 1023px;
+  }
+
+  .author-copy {
+    width: 100%;
+  }
+}

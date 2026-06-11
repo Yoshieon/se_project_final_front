@@ -1,18 +1,16 @@
-# NewsExplorer
 
-This is the Final Project that I worked on during my Software Engineer project.
+## Description 
+A news application powered by Vite which will let you search up the recent or upcoming topics in a search bar.
+This application can let you signup/login or you can search it up without having to set up and account. 
 
-## Description
+However in order to save an article you must sign up in order to have access to the Saved Articles Section of the application. 
 
-My project is an API Application that describes several topics on news reports throughtout the application. 
-You could sign in and sign out in order to get news that are reccomended to you or chose which ones you and like or dislike.
+## Deployment
+This project is Deployed on Github Pages
+[https://yoshieon.github.io/se_project_final_front/]
 
-## Tech Stack
 
-- HTML
-- CSS
-- Responsive Design
+## Record Pitch video
+A video is included in this project to give a general idea about this repository. 
 
-# Record pitch project:
-
-This is my project Pitch video describing the project and showing a 4-5 minute Brochure. 
+Recording Of Final project: https://drive.google.com/file/d/1gbBoJVx1atY4VbNI-rEOCwfYcN5MfUfN/view?usp=sharing

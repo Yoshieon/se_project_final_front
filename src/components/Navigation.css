@@ -1,0 +1,17 @@
+.main-navigation {
+  display: flex;
+  gap: 18px;
+}
+
+.nav-link {
+  padding: 10px 14px;
+  border-radius: 999px;
+  color: var(--text);
+  transition: background-color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
