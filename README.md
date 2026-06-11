@@ -7,7 +7,7 @@ However in order to save an article you must sign up in order to have access to 
 
 ## Deployment
 This project is Deployed on Github Pages
-[https://yoshieon.github.io/se_project_final_front/#/]
+[https://yoshieon.github.io/se_project_final_front/]
 
 
 ## Record Pitch video
